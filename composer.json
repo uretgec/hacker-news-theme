@@ -1,0 +1,13 @@
+{
+    "name": "uretgec/hacker-news-theme",
+    "description": "Free Bootstrap 4 Hacker News Theme",
+    "type": "project",
+    "license": "NONE",
+    "authors": [
+      {
+        "name": "uretgec",
+        "email": "iletisim@uretgec.com"
+      }
+    ],
+    "require": {}
+  }
