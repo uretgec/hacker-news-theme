@@ -41,7 +41,7 @@ function templatesMove() {
 }
 
 function assetsMove() {
-    return src([Configs.HERE + Configs.ASSETS + '**', '!' + Configs.HERE + Configs.CSS])
+    return src([Configs.HERE + Configs.ASSETS + '**', '!' + Configs.HERE + Configs.CSS + '**'])
         .pipe(dest(Configs.HERE + Configs.DIST + Configs.ASSETS));
 }
 
