@@ -1,0 +1,60 @@
+{% extends "layouts/base.twig" %}
+
+{% block content %}
+<div class="section p-2 m-0 bg-white">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm table-responsive table-borderless">
+                    <tbody>
+                        <tr>
+                            <td><i class="fa {% if post.last == post.current %}fa-sort{% elseif post.last < post.current %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
+                            <td>
+                                <p class="p-0 m-0">
+                                    <a href="#" class="titlelink" rel="nofollow">{{ post.title }}</a> <small>(<a href="{{ post.url }}">{{ post.url }}</a>)</small>
+                                </p>
+                                <p class="text-muted small">
+                                    <span>{{ post.score|default('0') }} point{% if post.score|default('0') > 0 %}s{% endif %}</span> by <a href="{{ post.author.url }}">{{ post.author.name }}</a> <span><a href="">5 minutes ago</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>
+                                </p>
+                                <form>
+                                    <div class="form-group">
+                                        <textarea type="comment" class="form-control" id="comment" placeholder=""></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-secondary">Add Comment</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% if comments|length > 0 %}
+            <div class="col-md-6">
+                <table class="table table-sm table-responsive table-borderless">
+                    <tbody>
+                    {% for comment in comments %}
+                        <tr>
+                            <td width="10px"></td>
+                            <td><i class="fa {% if comment.last == comment.current %}fa-sort{% elseif comment.last < comment.current %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
+                            <td>
+                                <p class="text-muted small mb-1">
+                                    <a href="{{ comment.user.url }}">{{ comment.user.name }}</a> <span class="age" title=""><a href="">21 hours ago</a></span> <span></span><span> | <a href="#31963073" class="clicky" aria-hidden="true">next</a></span> <a class="togg clicky" id="31963641" n="85" href="javascript:void(0)">[–]</a><span class="onstory"></span>                  
+                                </p>
+                                <div class="p-0 m-0">
+                                    <p class="small mb-1">{{ comment.content }}</p>
+
+                                    <p class="p-0 m-0 small"><u><a class="text-default" href="#">reply</a></u></p>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

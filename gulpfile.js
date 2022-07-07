@@ -4,6 +4,9 @@ const concat = require('gulp-concat');
 const rename = require('gulp-rename');
 const del = require('del');
 const cleanCss = require('gulp-clean-css');
+const mocha = require("gulp-mocha");
+
+const fs = require('fs');
 
 const Configs = {
     HERE: './',
@@ -59,5 +62,17 @@ function build() {
     )
 }
 
+function runTests(cb) {
+    return src(['**/*.test.js'])
+        .pipe(mocha())
+        .on('error', function() {
+            cb(new Error('Test failed'));
+        })
+        .on('end', function() {
+            cb();
+        });
+}
+
 exports.buildMe = build;
 exports.watchMe = watchTemplates;
+exports.testMe = runTests;

@@ -1,0 +1,22 @@
+<footer class="footer p-0 py-2 border-top">
+    <div class="container-fluid p-0 px-2">
+        <div class="row align-items-center justify-content-md-between">
+            <div class="col-md-4">
+                <div class="copyright">
+                &copy; 2022 <a href="index.html">{{ website|default('HACKER NEWS') }}</a> <small>v0.1</small>
+                </div>
+            </div>
+            <div class="col-md-8">
+            {% if pages|length > 0 %}
+                <ul class="nav nav-footer justify-content-end">
+                 {% for pageItem in pages %}
+                    <li class="nav-item">
+                        <a href="page.html" class="nav-link">{{ pageItem.title }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</footer>

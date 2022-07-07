@@ -10,6 +10,14 @@
         "gulp": "^4.0.2",
         "gulp-clean-css": "^4.3.0",
         "gulp-concat": "^2.6.1",
-        "gulp-rename": "^2.0.0"
+        "gulp-mocha": "^8.0.0",
+        "gulp-rename": "^2.0.0",
+        "should": "^13.2.3",
+        "twig": "^1.15.4"
+    },
+    "scripts": {
+        "watch": "gulp watchMe",
+        "build": "gulp buildMe",
+        "test": "gulp testMe"
     }
 }
