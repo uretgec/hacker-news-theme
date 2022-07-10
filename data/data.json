@@ -1,6 +1,7 @@
 {
     "Title": "Hacker News",
     "SiteName": "Hacker News",
+    "Query": "Key",
     "MainPages": [
         {
             "ID": "1",
