@@ -15,7 +15,7 @@
                                 <td><i class="fa {% if post.LastIndex == post.CurrentIndex %}fa-sort{% elseif post.LastIndex < post.CurrentIndex %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
                                 <td>
                                     <p class="p-0 m-0">
-                                        <a href="{{ post.Slugs }}" class="titlelink" rel="nofollow">{{ post.Title }}</a> <small>(<a href="{{ post.Url }}">{{ post.Uri }}</a>)</small>
+                                        <a href="{{ post.Slug }}" class="titlelink" rel="nofollow">{{ post.Title }}</a> <small>(<a href="{{ post.Url }}">{{ post.Uri }}</a>)</small>
                                     </p>
                                     <p class="text-muted small">
                                         <span>{{ post.Score|default('0') }} point{% if post.Score|default('0') > 0 %}s{% endif %}</span> by <a href="{{ post.Author.Url }}">{{ post.Author.Username }}</a> <span><a href="">{{ date(post.Updated)|date("d/m/Y @ H:i:s") }}</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>

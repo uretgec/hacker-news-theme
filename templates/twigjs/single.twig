@@ -7,14 +7,14 @@
             <div class="col-md-12">
                 <table class="table table-sm table-responsive table-borderless">
                     <tbody>
-                        <tr id="post-{{ post.ID }}">
-                            <td><i class="fa {% if post.LastIndex == post.CurrentIndex %}fa-sort{% elseif post.LastIndex < post.CurrentIndex %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
+                        <tr id="post-{{ Post.ID }}">
+                            <td><i class="fa {% if Post.LastIndex == Post.CurrentIndex %}fa-sort{% elseif Post.LastIndex < Post.CurrentIndex %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
                             <td>
                                 <p class="p-0 m-0">
-                                    <a href="{{ post.Slug }}" class="titlelink" rel="nofollow">{{ post.Title }}</a> <small>(<a href="{{ post.Url }}">{{ post.Uri }}</a>)</small>
+                                    <a href="{{ Post.Slug }}" class="titlelink" rel="nofollow">{{ Post.Title }}</a> <small>(<a href="{{ Post.Url }}">{{ Post.Uri }}</a>)</small>
                                 </p>
                                 <p class="text-muted small">
-                                    <span>{{ post.Score|default('0') }} point{% if post.Score|default('0') > 0 %}s{% endif %}</span> by <a href="{{ post.Author.Url }}">{{ post.Author.Username }}</a> <span><a href="">{{ date(post.Updated)|date("d/m/Y @ H:i:s") }}</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>
+                                    <span>{{ Post.Score|default('0') }} point{% if Post.Score|default('0') > 0 %}s{% endif %}</span> by <a href="{{ Post.Author.Url }}">{{ Post.Author.Username }}</a> <span><a href="">{{ date(Post.Updated)|date("d/m/Y @ H:i:s") }}</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>
                                 </p>
                                 <form>
                                     <div class="form-group">
@@ -40,7 +40,7 @@
                             <td><i class="fa {% if comment.LastIndex == comment.CurrentIndex %}fa-sort{% elseif comment.LastIndex < comment.CurrentIndex %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
                             <td>
                                 <p class="text-muted small mb-1">
-                                    <a href="{{ comment.Sser.Url }}">{{ comment.User.Username }}</a> <span class="age" title=""><a href="">{{ date(comment.Updated)|date("d/m/Y @ H:i:s") }}</a></span> <span></span><span> | <a href="#31963073" class="clicky" aria-hidden="true">next</a></span> <a class="togg clicky" id="31963641" n="85" href="javascript:void(0)">[–]</a><span class="onstory"></span>                  
+                                    <a href="{{ comment.User.Url }}">{{ comment.User.Username }}</a> <span class="age" title=""><a href="">{{ date(comment.Updated)|date("d/m/Y @ H:i:s") }}</a></span> <span></span><span> | <a href="#31963073" class="clicky" aria-hidden="true">next</a></span> <a class="togg clicky" id="31963641" n="85" href="javascript:void(0)">[–]</a><span class="onstory"></span>                  
                                 </p>
                                 <div class="p-0 m-0">
                                     <p class="small mb-1">{{ comment.Content }}</p>
