@@ -1,11 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Tests;
+namespace Test;
 
 use PHPUnit\Framework\TestCase;
 use Twig\Environment;
-use Twig\Error\RuntimeError;
 use Twig\Loader\FilesystemLoader;
 
 /**
@@ -51,7 +50,7 @@ class TwigTest extends TestCase
         } catch (\Exception $e) {
             var_dump($e->getMessage());
 
-            $this->assertInstanceOf(Runtime::class, $e::class);
+            $this->assertInstanceOf(Twig\Error\RuntimeError::class, $e::class);
         }
     }
     public function testIndexTemplate()
@@ -62,7 +61,7 @@ class TwigTest extends TestCase
         } catch (\Exception $e) {
             var_dump($e->getMessage());
 
-            $this->assertInstanceOf(Runtime::class, $e::class);
+            $this->assertInstanceOf(Twig\Error\RuntimeError::class, $e::class);
         }
     }
     public function testLoginTemplate()
@@ -73,7 +72,7 @@ class TwigTest extends TestCase
         } catch (\Exception $e) {
             var_dump($e->getMessage());
 
-            $this->assertInstanceOf(Runtime::class, $e::class);
+            $this->assertInstanceOf(Twig\Error\RuntimeError::class, $e::class);
         }
     }
     public function testPageTemplate()
@@ -84,7 +83,7 @@ class TwigTest extends TestCase
         } catch (\Exception $e) {
             var_dump($e->getMessage());
 
-            $this->assertInstanceOf(Runtime::class, $e::class);
+            $this->assertInstanceOf(Twig\Error\RuntimeError::class, $e::class);
         }
     }
     public function testSearchTemplate()
@@ -95,7 +94,7 @@ class TwigTest extends TestCase
         } catch (\Exception $e) {
             var_dump($e->getMessage());
 
-            $this->assertInstanceOf(Runtime::class, $e::class);
+            $this->assertInstanceOf(Twig\Error\RuntimeError::class, $e::class);
         }
     }
     public function testSingleTemplate()
@@ -106,7 +105,7 @@ class TwigTest extends TestCase
         } catch (\Exception $e) {
             var_dump($e->getMessage());
 
-            $this->assertInstanceOf(Runtime::class, $e::class);
+            $this->assertInstanceOf(Twig\Error\RuntimeError::class, $e::class);
         }
     }
 }
