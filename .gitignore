@@ -1,2 +1,6 @@
 node_modules
 !.gitkeep
+vendor
+composer.lock
+.vscode
+.phpunit.cache
