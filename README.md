@@ -28,4 +28,6 @@ go test -timeout 30s github.com/uretgec/hacker-news-theme/test
 ```
 
 ### NOTE
-- Feel free to use. Good luck.
+- Feel free to use. 
+- Good luck.
+- Version 0.1
