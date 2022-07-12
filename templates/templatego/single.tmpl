@@ -1,0 +1,64 @@
+{{define "content"}}
+    <div class="section p-2 m-0 bg-white">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-sm table-responsive table-borderless">
+                        <tbody>
+                            <tr id="post-{{ .Post.ID }}">
+                                <td><i class="fa {{ if eq .Post.LastIndex .Post.CurrentIndex }}fa-sort{{ else if lt .Post.LastIndex .Post.CurrentIndex }}fa-caret-up{{ else }}fa-caret-down{{ end }}"></i></td>
+                                <td>
+                                    <p class="p-0 m-0">
+                                        <a href="{{ .Post.Slug }}" class="titlelink" rel="nofollow">{{ .Post.Title }}</a> <small>(<a href="{{ .Post.URL }}">{{ .Post.URI }}</a>)</small>
+                                    </p>
+                                    <p class="text-muted small">
+                                        <span>{{ .Post.Score }} point{{ if gt .Post.Score 0 }}s{{ end }}</span> by <a href="{{ .Post.Author.URL }}">{{ .Post.Author.Username }}</a> <span><a href="">{{ (convertUpdateTime .Post.Updated).Format "d/m/Y @ H:i:s" }}</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>
+                                    </p>
+                                    <form>
+                                        <div class="form-group">
+                                            <textarea type="comment" class="form-control" id="comment" placeholder=""></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-sm btn-secondary">Add Comment</button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                {{ if gt (len .Comments) 0 }}
+                <div class="col-md-6">
+                    <table class="table table-sm table-responsive table-borderless">
+                        <tbody>
+                        {{ range $commentKey, $comment := .Comments }}
+                            <tr id="comment-{{ $comment.ID }}">
+                                <td width="10px"></td>
+                                <td><i class="fa {{ if eq $comment.LastIndex $comment.CurrentIndex }}fa-sort{{ else if lt $comment.LastIndex $comment.CurrentIndex }}fa-caret-up{{ else }}fa-caret-down{{ end }}"></i></td>
+                                <td>
+                                    <p class="text-muted small mb-1">
+                                        <a href="{{ $comment.User.URL }}">{{ $comment.User.Username }}</a> <span class="age" title=""><a href="">{{ (convertUpdateTime $comment.Updated).Format "d/m/Y @ H:i:s" }}</a></span> <span></span><span> | <a href="#31963073" class="clicky" aria-hidden="true">next</a></span> <a class="togg clicky" id="31963641" n="85" href="javascript:void(0)">[–]</a><span class="onstory"></span>                  
+                                    </p>
+                                    <div class="p-0 m-0">
+                                        <p class="small mb-1">{{ $comment.Content }}</p>
+
+                                        <p class="p-0 m-0 small"><u><a class="text-default" href="#">reply</a></u></p>
+                                    </div>
+                                </td>
+                            </tr>
+                        {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "headerStylesheets"}}{{end}}
+{{define "headerJavascripts"}}{{end}}
+
+{{define "footerStylesheets"}}{{end}}
+{{define "footerJavascripts"}}{{end}}

@@ -1,0 +1,24 @@
+{{define "footer"}}
+<footer class="footer p-0 py-2 border-top">
+    <div class="container-fluid p-0 px-2">
+        <div class="row align-items-center justify-content-md-between">
+            <div class="col-md-4">
+                <div class="copyright">
+                &copy; 2022 <a href="index.html">{{ .SiteName }}</a> <small>v0.1</small>
+                </div>
+            </div>
+            <div class="col-md-8">
+            {{ if gt (len .Pages) 0 }}
+                <ul class="nav nav-footer justify-content-end">
+                 {{ range $pageKey, $pageItem := .Pages }}
+                    <li class="nav-item">
+                        <a href="{{ $pageItem.Slug }}" class="nav-link">{{ $pageItem.Title }}</a>
+                    </li>
+                {{ end }}
+                </ul>
+            {{ end }}
+            </div>
+        </div>
+    </div>
+</footer>
+{{end}}

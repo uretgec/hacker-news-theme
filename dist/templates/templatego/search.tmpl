@@ -1,0 +1,49 @@
+{{define "content"}}
+    <div class="section p-0 mb-0 border-bottom bg-white">
+        <div class="container-fluid p-0 px-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="my-2 small">"{{ .Query }}" search results</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section p-0 pt-3 m-0 bg-white">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-12">
+                {{ if gt (len .Posts) 0 }}
+                    <table class="table table-sm table-responsive table-borderless mb-0">
+                        <tbody>
+                        {{ $i := 1 }}
+                        {{ range $postKey, $post := .Posts }}
+                            <tr id="post-{{ $post.ID }}">
+                                <td>{{ $i }}</td>
+                                <td><i class="fa {{ if eq $post.LastIndex $post.CurrentIndex }}fa-sort{{ else if lt $post.LastIndex $post.CurrentIndex }}fa-caret-up{{ else }}fa-caret-down{{ end }}"></i></td>
+                                <td>
+                                    <p class="p-0 m-0">
+                                        <a href="{{ $post.Slug }}" class="titlelink" rel="nofollow">{{ $post.Title }}</a> <small>(<a href="{{ $post.URL }}">{{ $post.URI }}</a>)</small>
+                                    </p>
+                                    <p class="text-muted small">
+                                        <span>{{ $post.Score }} point{{ if gt $post.Score 0 }}s{{ end }}</span> by <a href="{{ $post.Author.URL }}">{{ $post.Author.Username }}</a> <span><a href="">{{ (convertUpdateTime $post.Updated).Format "d/m/Y @ H:i:s" }}</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>
+                                    </p>
+                                </td>
+                            </tr>
+                            {{ $i = add $i 1 }}
+                        {{ end }}
+                        </tbody>
+                    </table>
+                {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+{{end}}
+
+{{define "headerStylesheets"}}{{end}}
+{{define "headerJavascripts"}}{{end}}
+
+{{define "footerStylesheets"}}{{end}}
+{{define "footerJavascripts"}}{{end}}
