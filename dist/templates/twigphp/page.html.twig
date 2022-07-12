@@ -1,0 +1,33 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block content %}
+    <div class="section p-2 m-0 bg-white">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-sm table-responsive table-borderless">
+                        <tbody>
+                            <tr id="page-{{ Page.ID }}">
+                                <td>
+                                    <h3>{{ Page.Title }}</h3>
+                                    
+                                    {{ Page.Content }}
+                                    
+                                    <p class="small">Updated: {{ date(Page.Updated)|date("d/m/Y @ H:i:s") }}</p>
+                                    <form>
+                                        <div class="form-group">
+                                            <textarea type="comment" class="form-control" id="comment" placeholder=""></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-sm btn-secondary">Add Comment</button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
+    <!--<link rel="icon" type="image/x-icon" href="../../assets/img/favicon.ico">-->
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ Title }}</title>
+
+    <link rel="stylesheet" href="../../assets/css/style.min.css">
+    {% block headerStylesheets %}{% endblock %}
+    {% block headerJavascripts %}{% endblock %}
+</head>
+<body class="mx-sm-0 mx-lg-9 my-lg-2 shadow">
+
+    {% include 'partials/header.html.twig' %}
+
+    <div class="wrapper">
+        {% block content %}{% endblock %}
+
+        {% include 'partials/pagination.html.twig' %}
+        {% include 'partials/footer.html.twig' %}
+    </div>
+
+    {% block footerStylesheets %}{% endblock %}
+    {% block footerJavascripts %}{% endblock %}
+</body>
+</html>

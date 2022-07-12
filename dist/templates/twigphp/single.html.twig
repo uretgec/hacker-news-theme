@@ -1,0 +1,60 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block content %}
+<div class="section p-2 m-0 bg-white">
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm table-responsive table-borderless">
+                    <tbody>
+                        <tr id="post-{{ Post.ID }}">
+                            <td><i class="fa {% if Post.LastIndex == Post.CurrentIndex %}fa-sort{% elseif Post.LastIndex < Post.CurrentIndex %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
+                            <td>
+                                <p class="p-0 m-0">
+                                    <a href="{{ Post.Slug }}" class="titlelink" rel="nofollow">{{ Post.Title }}</a> <small>(<a href="{{ Post.Url }}">{{ Post.Uri }}</a>)</small>
+                                </p>
+                                <p class="text-muted small">
+                                    <span>{{ Post.Score|default('0') }} point{% if Post.Score|default('0') > 0 %}s{% endif %}</span> by <a href="{{ Post.Author.Url }}">{{ Post.Author.Username }}</a> <span><a href="">{{ date(Post.Updated)|date("d/m/Y @ H:i:s") }}</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>
+                                </p>
+                                <form>
+                                    <div class="form-group">
+                                        <textarea type="comment" class="form-control" id="comment" placeholder=""></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-sm btn-secondary">Add Comment</button>
+                                    </div>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            {% if Comments|length > 0 %}
+            <div class="col-md-6">
+                <table class="table table-sm table-responsive table-borderless">
+                    <tbody>
+                    {% for comment in Comments %}
+                        <tr id="comment-{{ comment.ID }}">
+                            <td width="10px"></td>
+                            <td><i class="fa {% if comment.LastIndex == comment.CurrentIndex %}fa-sort{% elseif comment.LastIndex < comment.CurrentIndex %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
+                            <td>
+                                <p class="text-muted small mb-1">
+                                    <a href="{{ comment.User.Url }}">{{ comment.User.Username }}</a> <span class="age" title=""><a href="">{{ date(comment.Updated)|date("d/m/Y @ H:i:s") }}</a></span> <span></span><span> | <a href="#31963073" class="clicky" aria-hidden="true">next</a></span> <a class="togg clicky" id="31963641" n="85" href="javascript:void(0)">[–]</a><span class="onstory"></span>                  
+                                </p>
+                                <div class="p-0 m-0">
+                                    <p class="small mb-1">{{ comment.Content }}</p>
+
+                                    <p class="p-0 m-0 small"><u><a class="text-default" href="#">reply</a></u></p>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

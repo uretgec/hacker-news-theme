@@ -1,0 +1,29 @@
+ {% if Pagination.Total > 0 %}
+<div class="section p-0 pt-3 mb-0 border-top bg-white">
+    <div class="container-fluid p-0 px-2">
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination pagination-sm justify-content-left">
+                    {% for pageNum in Pagination.Pages %}
+                        {% if loop.first and (pageNum-1) > 0  %}
+                        <li class="page-item">
+                            <a class="page-link" href="index.html?page={{ pageNum-1 }}"><i class="fa fa-angle-left"></i></a>
+                        </li>
+                        {% endif %}
+                        <li class="page-item {% if Pagination.Current == pageNum %}active{% endif %}">
+                            <a class="page-link" href="index.html?page={{ pageNum }}">{{ pageNum }}</a>
+                        </li>
+                        {% if loop.last and Pagination.Total >= (pageNum+1) %}
+                        <li class="page-item">
+                            <a class="page-link" href="index.html?page={{ pageNum+1 }}"><i class="fa fa-angle-right"></i></a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

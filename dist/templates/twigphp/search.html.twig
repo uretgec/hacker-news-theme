@@ -1,0 +1,45 @@
+{% extends "layouts/base.html.twig" %}
+
+{% block content %}
+    <div class="section p-0 mb-0 border-bottom bg-white">
+        <div class="container-fluid p-0 px-2">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="my-2 small">"{{ Query }}" search results</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section p-0 pt-3 m-0 bg-white">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-md-12">
+                {% if Posts|length > 0 %}
+                    <table class="table table-sm table-responsive table-borderless mb-0">
+                        <tbody>
+                        {% set i = 1 %}
+                        {% for post in Posts %}
+                            <tr id="post-{{ post.ID }}">
+                                <td>{{ i }}</td>
+                                <td><i class="fa {% if post.LastIndex == post.CurrentIndex %}fa-sort{% elseif post.LastIndex < post.CurrentIndex %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i></td>
+                                <td>
+                                    <p class="p-0 m-0">
+                                        <a href="{{ post.Slug }}" class="titlelink" rel="nofollow">{{ post.Title }}</a> <small>(<a href="{{ post.Url }}">{{ post.Uri }}</a>)</small>
+                                    </p>
+                                    <p class="text-muted small">
+                                        <span>{{ post.Score|default('0') }} point{% if post.Score|default('0') > 0 %}s{% endif %}</span> by <a href="{{ post.Author.Url }}">{{ post.Author.Username }}</a> <span><a href="">{{ date(post.Updated)|date("d/m/Y @ H:i:s") }}</a></span> | <a href="#">hide</a> | <a href="#">past</a> | <a href="single.html">discuss</a>
+                                    </p>
+                                </td>
+                            </tr>
+                            {% set i = i + 1 %}
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
