@@ -1,3 +1,4 @@
+{{define "error"}}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,21 +11,22 @@
     <title>{{ .Title }}</title>
 
     <link rel="stylesheet" href="../../assets/css/style.min.css">
-    {{ block "headerStylesheets" }}{{ endblock }}
-    {{ block "headerJavascripts" }}{{ endblock }}
+    {{ template "headerStylesheets" . }}
+    {{ template "headerJavascripts" . }}
 </head>
 <body class="mx-sm-0 mx-lg-9 my-lg-2 shadow">
 
-    {{ template "../partials/header" . }}
+    {{ template "header" . }}
 
     <div class="wrapper">
-        {{ template "content" }}
+        {{ template "content" . }}
 
-        {{ template "../partials/pagination" . }}
-        {{ template "../partials/footer" . }}
+        {{ template "pagination" . }}
+        {{ template "footer" . }}
     </div>
 
-    {{ block "footerStylesheets" }}{{ endblock }}
-    {{ block "footerJavascripts" }}{{ endblock }}
+    {{ template "footerStylesheets" . }}
+    {{ template "footerJavascripts" . }}
 </body>
 </html>
+{{end}}

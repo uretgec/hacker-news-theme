@@ -16,8 +16,8 @@ func Test404Template(t *testing.T) {
 	md := getMyData()
 
 	// Render Template
-	tmpl := template.Must(template.New("404.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("../templates/templatego/404.tmpl")...))
-	err := tmpl.ExecuteTemplate(os.Stdout, "base", md)
+	tmpl := template.Must(template.New("404.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("../templates/templatego/layouts/error.tmpl", "../templates/templatego/404.tmpl")...))
+	err := tmpl.ExecuteTemplate(os.Stdout, "error", md)
 	if err != nil {
 		log.Fatalf("template execution: %s", err)
 
@@ -31,7 +31,7 @@ func TestIndexTemplate(t *testing.T) {
 	md := getMyData()
 
 	// Render Template
-	tmpl := template.Must(template.New("index.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("../templates/templatego/index.tmpl")...))
+	tmpl := template.Must(template.New("index.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("", "../templates/templatego/index.tmpl")...))
 	err := tmpl.ExecuteTemplate(os.Stdout, "base", md)
 	if err != nil {
 		log.Fatalf("template execution: %s", err)
@@ -46,7 +46,7 @@ func TestLoginTemplate(t *testing.T) {
 	md := getMyData()
 
 	// Render Template
-	tmpl := template.Must(template.New("login.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("../templates/templatego/login.tmpl")...))
+	tmpl := template.Must(template.New("login.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("", "../templates/templatego/login.tmpl")...))
 	err := tmpl.ExecuteTemplate(os.Stdout, "base", md)
 	if err != nil {
 		log.Fatalf("template execution: %s", err)
@@ -61,7 +61,7 @@ func TestPageTemplate(t *testing.T) {
 	md := getMyData()
 
 	// Render Template
-	tmpl := template.Must(template.New("page.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("../templates/templatego/page.tmpl")...))
+	tmpl := template.Must(template.New("page.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("", "../templates/templatego/page.tmpl")...))
 	err := tmpl.ExecuteTemplate(os.Stdout, "base", md)
 	if err != nil {
 		log.Fatalf("template execution: %s", err)
@@ -76,7 +76,7 @@ func TestSearchTemplate(t *testing.T) {
 	md := getMyData()
 
 	// Render Template
-	tmpl := template.Must(template.New("search.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("../templates/templatego/search.tmpl")...))
+	tmpl := template.Must(template.New("search.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("", "../templates/templatego/search.tmpl")...))
 	err := tmpl.ExecuteTemplate(os.Stdout, "base", md)
 	if err != nil {
 		log.Fatalf("template execution: %s", err)
@@ -91,7 +91,7 @@ func TestSingleTemplate(t *testing.T) {
 	md := getMyData()
 
 	// Render Template
-	tmpl := template.Must(template.New("single.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("../templates/templatego/single.tmpl")...))
+	tmpl := template.Must(template.New("single.html").Funcs(getMyFuncs()).ParseFiles(getMyFileList("", "../templates/templatego/single.tmpl")...))
 	err := tmpl.ExecuteTemplate(os.Stdout, "base", md)
 	if err != nil {
 		log.Fatalf("template execution: %s", err)
@@ -115,9 +115,13 @@ func getMyFuncs() template.FuncMap {
 	}
 }
 
-func getMyFileList(files ...string) []string {
+func getMyFileList(layout string, files ...string) []string {
+	if layout == "" {
+		layout = "../templates/templatego/layouts/base.tmpl"
+	}
+
 	requiredFiles := []string{
-		"../templates/templatego/layouts/base.tmpl",
+		layout,
 		"../templates/templatego/partials/header.tmpl",
 		"../templates/templatego/partials/pagination.tmpl",
 		"../templates/templatego/partials/footer.tmpl",
